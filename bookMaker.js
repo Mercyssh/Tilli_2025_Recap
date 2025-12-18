@@ -18,7 +18,7 @@ function updateBookSize() {
     // Get the current viewport width minus the margins
     // Choose different margin depending on orientation
     // var width = window.outerWidth - (_orientation ? 30 : 100);
-    var height = window.outerHeight - (_orientation ? 300 : 350);
+    var height = window.outerHeight - (_orientation ? 300 : 300);
 
     /// Calculate the height maintaining the aspect ratio
 
