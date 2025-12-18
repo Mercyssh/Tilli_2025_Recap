@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilli 2025 Quick Recap</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="centerer">
+
+        <!-- Contents at the top of the book -->
+        <!-- <div id="topMenu" class="hideTopMenu">
+            <div id="topMenuToggle">Contents</div>
+            <div id="topMenuItems">
+                <div data-page-start="13">Glimpse of life at ANU</div>
+                <div data-page-start="23">Before the project starts</div>
+                <div data-page-start="43">Learn about the theme</div>
+                <div data-page-start="69">Primary research</div>
+                <div data-page-start="93">Game design begins (Web-app)</div>
+                <div data-page-start="161">Creation of Unity Game</div>
+                <div data-page-start="211">End note</div>
+            </div>
+        </div> -->
+
+
+        <!-- BG Spring -->
+        <div class="bgspring"></div>
+
+        <!-- Book and info Container -->
+        <div class="container">
+            <!-- Container for First page Info -->
+            <!-- <div class="bookInfo">
+                <p class="header">Contents</p>
+                <ul id="bookmarks">
+                    <li data-page-start="13">Glimpse of life at ANU</li>
+                    <li data-page-start="23">Before the project starts</li>
+                    <li data-page-start="43">Learn about the theme</li>
+                    <li data-page-start="69">Primary research</li>
+                    <li data-page-start="93">Game design begins (Web-app)</li>
+                    <li data-page-start="161">Creation of Unity Game</li>
+                    <li data-page-start="211">End note</li>
+                </ul>
+            </div> -->
+            <!-- Actual Book -->
+            <div id="book">
+                <div class="hard" style="background-image: url(pages/1.jpg);"></div>
+                <div style="background-image: url(pages/2.jpg);"></div>
+                <div style="background-image: url(pages/3.jpg);"></div>
+                <div style="background-image: url(pages/4.jpg);"></div>
+                <div style="background-image: url(pages/5.jpg);"></div>
+                <div style="background-image: url(pages/6.jpg);"></div>
+                <div style="background-image: url(pages/7.jpg);"></div>
+                <div style="background-image: url(pages/8.jpg);"></div>
+                <div style="background-image: url(pages/9.jpg);"></div>
+                <div class="hard" style="background-image: url(pages/10.jpg);"></div>
+            </div>
+        </div>
+        <!-- Buttons user can click to turn pages -->
+        <div id="turnControls">
+            <div class="turnButton" onclick="previousPage()">
+                <img src="./assets/turn_previous.svg" alt="previous page">
+            </div>
+            <input class="currentPage" value="0"></input>
+            <div class="turnButton" onclick="nextPage()">
+                <img src="./assets/turn_next.svg" alt="next page">
+            </div>
+            <div class="ofPages">of 0</div>
+        </div>
+
+        <!-- Turn pages by tapping on the screen -->
+        <div id="tapControls">
+            <div class="leftSide"></div>
+            <div class="rightSide"></div>
+        </div>
+
+        <!-- Mobile Contents Navigation -->
+        <div id="portraitMenu">
+
+        </div>
+
+        <!-- Navigation prompts -->
+        <div id="portraitPrompt">
+            "Try tapping, turning page, or typing a page number to navigate!"
+        </div>
+
+        <!-- Contact Information -->
+        <div id="contactInfo">
+            <div>Get in Touch! 👉</div>
+            <a href="https://www.linkedin.com/company/tillikids/" target="_blank">LinkedIn</a>
+            <div class="sep"></div>
+            <a href="https://www.tillikids.com/tilli-for-school" target="_blank">Our Website</a>
+            <div class="sep"></div>
+            <a href="mailto:kavindya@tillikids.com" target="_blank">kavindya@tillikids.com</a>
+        </div>
+
+    </div>
+
+    <script src="./req/jquery.min.1.7.js"></script>
+    <script src="./req/turn.min.js"></script>
+    <!-- Inits book and sets some helper functions -->
+    <script src="./bookMaker.js"></script>
+    <!-- Custom Navigation logic; keyboard, btns, gestures -->
+    <script src="./pageControls.js"></script>
+    <!-- Contents page navigation -->
+    <script src="./contentsNavigation.js"></script>
+    <!-- Mobile support -->
+    <script src="./mobileViewer.js"></script>
+
+</body>
+
+</html>

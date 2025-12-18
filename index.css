@@ -1,0 +1,419 @@
+body {
+    /* background: rgb(238, 226, 223); */
+    background: #84d4f7;
+    overflow: hidden;
+
+    height: 100vh;
+
+    margin: 0;
+    box-sizing: border-box;
+
+
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.bgspring {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url(/assets/bgspring.png);
+    background-size: cover;
+    z-index: -1;
+}
+
+.centerer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    row-gap: 20px;
+}
+
+#book div {
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+}
+
+/* Book Visible Area - Shadow */
+#book .shadow {
+    box-shadow: 0 0px 40px #61382549;
+}
+
+
+/* Page turning button controls - below the book*/
+#turnControls {
+    position: relative;
+
+    display: flex;
+    column-gap: 6px;
+
+    z-index: 2;
+}
+
+.turnButton {
+    /* Controls color */
+    border: 1px solid rgb(0, 0, 0);
+    opacity: 0.3;
+
+    background-color: rgb(84, 66, 48);
+
+    /* Adjusts sizing to make it square */
+    width: 10px;
+    height: 10px;
+    padding: 3px;
+    border-radius: 3px;
+
+    /* Centers image within the div */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+
+    /* makes hover effect smoother */
+    transition: opacity 0.2s;
+}
+
+/* Adds some hover and active states for better UI */
+.turnButton:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+.turnButton:active {
+    opacity: .2;
+    transition: opacity 0s;
+}
+
+.currentPage {
+    color: rgb(0, 0, 0);
+    opacity: 0.3;
+
+    margin-top: -2px;
+    width: 30px;
+    text-align: center;
+
+    font-size: 14px;
+    font-family: 'Montserrat', 'Inter', Helvetica, sans-serif;
+
+    /* Hides input default styling */
+    background: none;
+    border: 1px solid transparent;
+    outline: none;
+
+
+    transition: opacity .2s, border-bottom .2s;
+}
+
+.currentPage:hover {
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+.currentPage:focus {
+    opacity: 1;
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+
+/* This selector is used for adding "out of xxx" pages */
+/* The content needs to be updated on document read, by checking number of pages in book */
+#turnControls .ofPages {
+    color: rgb(0, 0, 0);
+    opacity: .3;
+
+    font-family: 'Montserrat', 'Inter', Helvetica, sans-serif;
+    font-size: 11px;
+
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+
+    width: max-content;
+
+    text-align: center;
+
+    transform: translate(-50%, 0%);
+}
+
+
+
+/* First page Info on left hand side */
+/* Consists of Contents and navigation tutorial */
+.bookInfo {
+    position: absolute;
+    color: rgb(0, 0, 0);
+
+    padding: 1%;
+
+    font-family: 'Montserrat', 'Inter', Helvetica, sans-serif;
+    font-size: 1.4vw;
+
+    /* We set z-index high here, so its clickable through the book container */
+    z-index: 999;
+    user-select: none;
+
+    transition: opacity 0.3s;
+}
+
+.header {
+    font-weight: 700;
+    font-size: max(1.4vw, 14px);
+    margin-bottom: 10px;
+
+    padding-left: 10px;
+    border-left: 2px solid #f27326;
+}
+
+ul {
+    list-style: none;
+    /* The padding here controls the Indentation of text */
+    padding-left: 0px;
+    margin: 0px;
+}
+
+ul li {
+    position: relative;
+    color: rgb(0, 0, 0);
+    opacity: .5;
+
+    width: max-content;
+
+    /* We cap the minimum size of the text so it doesn't become unreadable*/
+    /* We use MAX function here to pick the largest, this way it can't go below 14px */
+    font-size: max(0.8vw, 14px);
+    /* text-decoration: underline; */
+    margin-bottom: 8px;
+
+    transition: opacity 0.1s, visibility 0.1s;
+}
+
+/* Add custom bullets to each list element */
+ul li::before {
+    /* color: #f27326; */
+    content: '> ';
+}
+
+ul li:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+ul li:active {
+    opacity: .2;
+    transition: opacity 0s;
+}
+
+/* Hides the list */
+.hideBookInfo {
+    z-index: -1;
+    opacity: 0;
+}
+
+/* applied on selected list element */
+.selected {
+    opacity: 1;
+}
+
+
+
+/* Menu at top of the book */
+#topMenu {
+    width: 100%;
+
+    display: flex;
+    align-items: end;
+    column-gap: 30px;
+
+    font-family: 'Montserrat', 'Inter', Helvetica, sans-serif;
+    font-size: max(0.8vw, 10px);
+    font-weight: 300;
+    text-align: center;
+
+    user-select: none;
+    overflow: hidden;
+
+    transition: .1s opacity;
+}
+
+/* This one is used to hide the entire hamburger menu with the icon */
+.hideTopMenu {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Button to Toggle the Menu */
+#topMenuToggle {
+    /* border-right: 1px solid white; */
+    padding-right: 30px;
+
+    color: rgb(0, 0, 0);
+    opacity: .5;
+    transition: .1s opacity, .2s font-weight;
+    cursor: pointer;
+}
+
+#topMenuToggle:hover {
+    opacity: 1;
+}
+
+.activateTopMenuToggle {
+    position: relative;
+    opacity: 1 !important;
+    font-weight: 500;
+}
+
+.activateTopMenuToggle::after {
+    content: '';
+    position: absolute;
+    right: 0px;
+
+    border-right: 1px solid rgb(0, 0, 0);
+    height: 100%;
+}
+
+/* Container for Items within the Top Content menu */
+#topMenuItems {
+    width: 100%;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    column-gap: 15px;
+
+    transition: .3s opacity;
+}
+
+/* Individual element inside above container */
+#topMenuItems div {
+    color: rgb(0, 0, 0);
+    opacity: .5;
+
+    cursor: pointer;
+    transition: .1s opacity;
+
+}
+
+#topMenuItems div:hover {
+    opacity: 1;
+}
+
+/* Applied when closing Top hamburger menu */
+.collapseTopMenuItems {
+    pointer-events: none;
+    opacity: 0 !important;
+}
+
+/* This one is used to collapse the hamburger menu */
+
+/* We set this to relative so that ContentsBtn sets position */
+/* with respect to this container.. should've been done earlier */
+.container {
+    position: relative;
+}
+
+
+/* Classes for mobile support */
+.hideForPortrait {
+    display: none !important;
+    pointer-events: none !important;
+}
+
+/* Tap on half page to turn book */
+#tapControls {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    z-index: 1;
+}
+
+#tapControls .leftSide,
+#tapControls .rightSide {
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+}
+
+/* Below selectors are for debug only */
+/* #tapControls .leftSide {
+    background-color: red;
+}
+
+#tapControls .rightSide {
+    background-color: blue;
+} */
+
+.bookToFront {
+    z-index: 99 !important;
+}
+
+
+/* Prompts to help with navigation */
+#portraitPrompt {
+    font-family: 'Montserrat', 'Inter', Helvetica, sans-serif;
+    font-size: 12px;
+
+    text-align: center;
+    margin: 40px 20px 0px 20px;
+
+    color: rgb(0, 0, 0);
+    opacity: .7;
+
+    transition: .2s opacity;
+}
+
+.hidePrompt {
+    opacity: 0 !important;
+}
+
+.p-temporal {
+    background: white;
+}
+
+
+/* Contact Information at bottom */
+#contactInfo {
+    font-family: 'Montserrat', 'Inter', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: max(.7vw, 11px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 15px;
+    text-align: center;
+
+    width: max-content;
+    height: max-content;
+
+
+    position: absolute;
+    bottom: 20px;
+}
+
+#contactInfo .sep {
+    width: 1px;
+    height: 12px;
+    border-left: 1px solid black;
+    opacity: .2;
+}
+
+#contactInfo a:link {
+    color: #02380d;
+
+}
+
+#contactInfo a:visited {
+    color: #02380d;
+}
