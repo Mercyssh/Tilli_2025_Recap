@@ -21,7 +21,7 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background: url(/assets/bgspring.png);
+    background: url(./assets/bgspring.png);
     background-size: cover;
     z-index: -1;
 }
